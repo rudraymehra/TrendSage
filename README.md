@@ -2,54 +2,51 @@
 
 TrendSage is an AI-driven research assistant that helps users discover and analyze current market trends by aggregating and summarizing scholarly publications using RAG (Retrieval-Augmented Generation).
 
-## Features
+![TrendSage Screenshot](https://via.placeholder.com/800x400?text=TrendSage+AI+Market+Research)
 
-- **AI-Powered Trend Analysis**: Get instant, credible insights from scholarly sources
-- **Interactive Trend Cards**: View summaries with citations, charts, and key takeaways
-- **Publication Trend Charts**: Visualize research publication trends over time
-- **Social Sharing**: Share insights on Twitter, LinkedIn, or export as Markdown/JSON
-- **Analytics Dashboard**: Track usage metrics and progress towards goals
-- **Discover Page**: Browse trending topics by category
+## ✨ Features
 
-## Tech Stack
+- **🤖 AI-Powered Trend Analysis**: Get instant, credible insights from scholarly sources
+- **📊 Interactive Trend Cards**: View summaries with citations, charts, and key takeaways
+- **📈 Publication Trend Charts**: Visualize research publication trends over time
+- **🔗 Social Sharing**: Share insights on Twitter, LinkedIn, or export as Markdown/JSON
+- **📉 Analytics Dashboard**: Track usage metrics and progress towards goals
+- **🔍 Discover Page**: Browse trending topics by category
 
-### Frontend
-- **Next.js 15** with App Router
+## 🛠 Tech Stack
+
+- **Next.js 16** with App Router
 - **TypeScript** for type safety
 - **Tailwind CSS** for styling
-- **Chart.js** (custom canvas implementation) for visualizations
-
-### Backend
-- **Node.js/Express** API server
 - **OpenAI GPT-4o** for AI summarization
 - **Veritus API** for scholarly search
-- **MongoDB** (optional) for persistence
+- **Vercel** for deployment (all-in-one)
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 trendsage/
-├── frontend/               # Next.js frontend
-│   ├── src/
-│   │   ├── app/           # App router pages
-│   │   ├── components/    # React components
-│   │   ├── hooks/         # Custom React hooks
-│   │   ├── lib/           # API client & utilities
-│   │   └── types/         # TypeScript types
-│   └── .env.local         # Frontend environment
-│
-├── backend/               # Express backend
-│   ├── src/
-│   │   ├── routes/        # API routes
-│   │   ├── services/      # Business logic
-│   │   ├── middleware/    # Express middleware
-│   │   └── index.js       # Server entry
-│   └── .env               # Backend environment
-│
-└── README.md
+└── frontend/                    # Full-stack Next.js app
+    ├── src/
+    │   ├── app/
+    │   │   ├── api/            # Next.js API routes
+    │   │   │   ├── search/     # Search endpoints
+    │   │   │   ├── discover/   # Featured topics
+    │   │   │   ├── analytics/  # Analytics tracking
+    │   │   │   └── health/     # Health check
+    │   │   ├── analytics/      # Analytics page
+    │   │   ├── discover/       # Discover page
+    │   │   └── page.tsx        # Homepage
+    │   ├── components/         # React components
+    │   ├── hooks/              # Custom React hooks
+    │   ├── lib/
+    │   │   ├── api.ts          # API client
+    │   │   └── services/       # Backend services
+    │   └── types/              # TypeScript types
+    └── .env.local              # Environment variables
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 18+
@@ -58,50 +55,61 @@ trendsage/
 ### 1. Clone and Install
 
 ```bash
-cd trendsage
-
-# Install frontend dependencies
-cd frontend
-npm install
-
-# Install backend dependencies
-cd ../backend
+git clone https://github.com/rudraymehra/TrendSage.git
+cd TrendSage/frontend
 npm install
 ```
 
 ### 2. Configure Environment
 
-**Backend (.env):**
+Create `.env.local` in the frontend directory:
+
 ```env
-PORT=3001
+# Veritus API (Scholarly Search)
+VERITUS_API_URL=https://discover.veritus.ai/api
+VERITUS_API_KEY=your_veritus_api_key_here
+
+# OpenAI API (optional - uses mock data if not set)
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Environment
 NODE_ENV=development
-FRONTEND_URL=http://localhost:3000
-
-# Add your API keys
-VERITUS_API_KEY=your_veritus_key
-OPENAI_API_KEY=your_openai_key
 ```
 
-**Frontend (.env.local):**
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3001/api
-```
-
-### 3. Start Development Servers
+### 3. Start Development Server
 
 ```bash
-# Terminal 1 - Start backend
-cd backend
-npm run dev
-
-# Terminal 2 - Start frontend
-cd frontend
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## API Endpoints
+> **Note**: The app works with mock data if API keys aren't configured, making it perfect for demo/development.
+
+## 🌐 Deploy to Vercel
+
+### One-Click Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/rudraymehra/TrendSage&root-directory=frontend)
+
+### Manual Deploy
+
+1. Go to [vercel.com](https://vercel.com)
+2. Import your GitHub repository
+3. Set **Root Directory** to `frontend`
+4. Add Environment Variables:
+
+| Variable | Description |
+|----------|-------------|
+| `VERITUS_API_URL` | `https://discover.veritus.ai/api` |
+| `VERITUS_API_KEY` | Your Veritus API key |
+| `OPENAI_API_KEY` | Your OpenAI API key (optional) |
+
+5. Click Deploy!
+
+## 📡 API Endpoints
+
+All API routes are part of the Next.js app (no separate backend needed):
 
 ### Search
 - `POST /api/search` - Full trend analysis with AI summary
@@ -109,61 +117,50 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - `GET /api/search/suggestions?q=query` - Autocomplete suggestions
 - `POST /api/search/regenerate` - Regenerate summary for existing docs
 
-### Trending
-- `GET /api/trending` - Get trending topics
-- `GET /api/trending/featured` - Get featured topics for homepage
-- `GET /api/trending/categories` - Get topics by category
-- `GET /api/trending/chart/:topic` - Get publication trend chart data
+### Discover
+- `GET /api/discover/featured` - Get featured and trending topics
 
 ### Analytics
-- `GET /api/analytics/summary?range=7d` - Get analytics summary
-- `GET /api/analytics/goal-progress` - Track 69-user goal
-- `POST /api/analytics/card-view` - Track card view event
-- `POST /api/analytics/share` - Track share event
+- `GET /api/analytics?range=7d` - Get analytics summary
+- `POST /api/analytics/track` - Track events (card views, shares)
 
-## API Keys Required
+### Health
+- `GET /api/health` - Health check endpoint
+
+## 🔑 API Keys
 
 1. **Veritus API Key**: For scholarly document search
-   - Sign up at veritus.ai to get an API key
+   - Sign up at [veritus.ai](https://veritus.ai) to get an API key
 
-2. **OpenAI API Key**: For AI summarization
-   - Get from platform.openai.com
+2. **OpenAI API Key** (Optional): For AI summarization
+   - Get from [platform.openai.com](https://platform.openai.com)
 
-> **Note**: The app works with mock data if API keys aren't configured, making it perfect for demo/development.
+## 🎨 UI Features
 
-## Deployment
+- **Dark Theme**: Modern, eye-friendly dark interface
+- **Animated Background**: Gradient blob animations
+- **Glass Morphism**: Frosted glass effects on cards
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Keyboard Shortcuts**: `⌘/Ctrl + K` to focus search
 
-### Frontend (Vercel)
-```bash
-cd frontend
-vercel
-```
+## 📊 Environment Variables Summary
 
-### Backend (Railway/Render/Heroku)
-```bash
-cd backend
-# Deploy using your preferred platform
-```
-
-## Environment Variables Summary
-
-| Variable | Location | Description |
+| Variable | Required | Description |
 |----------|----------|-------------|
-| `PORT` | Backend | Server port (default: 3001) |
-| `FRONTEND_URL` | Backend | CORS allowed origin |
-| `VERITUS_API_KEY` | Backend | Scholarly search API key |
-| `OPENAI_API_KEY` | Backend | OpenAI API key for GPT-4o |
-| `MONGODB_URI` | Backend | Optional MongoDB connection |
-| `NEXT_PUBLIC_API_URL` | Frontend | Backend API URL |
+| `VERITUS_API_KEY` | Yes* | Scholarly search API key |
+| `VERITUS_API_URL` | No | API URL (has default) |
+| `OPENAI_API_KEY` | No | OpenAI API key for GPT-4o |
 
-## Contributing
+*Uses mock data if not provided
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
+2. Create your feature branch (`git checkout -b feature/amazing`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing`)
 5. Create a Pull Request
 
-## License
+## 📄 License
 
-MIT
+MIT © TrendSage
