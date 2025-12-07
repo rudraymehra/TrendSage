@@ -31,6 +31,7 @@ interface VeritusApiResponse {
   tldr?: string;
   link?: string;
   pdfLink?: string;
+  titleLink?: string;
   semanticLink?: string;
   doi?: string;
   journalName?: string;
@@ -125,6 +126,7 @@ const normalizeVeritusResponse = (
     url:
       doc.link ||
       doc.pdfLink ||
+      doc.titleLink ||
       doc.semanticLink ||
       (doc.doi ? `https://doi.org/${doc.doi}` : null),
     source:
