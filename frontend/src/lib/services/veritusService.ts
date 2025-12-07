@@ -124,9 +124,9 @@ const normalizeVeritusResponse = (
         : doc.authors || [],
     abstract: doc.abstract || doc.tldr || '',
     url:
+      doc.titleLink ||
       doc.link ||
       doc.pdfLink ||
-      doc.titleLink ||
       doc.semanticLink ||
       (doc.doi ? `https://doi.org/${doc.doi}` : null),
     source:

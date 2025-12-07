@@ -174,7 +174,7 @@ const normalizeVeritusResponse = (data, limit = 5) => {
       ? doc.authors.split(',').map(a => a.trim())
       : (doc.authors || []),
     abstract: doc.abstract || doc.tldr || '',
-    url: doc.link || doc.titleLink || doc.pdfLink || doc.semanticLink || (doc.doi ? `https://doi.org/${doc.doi}` : null),
+    url: doc.titleLink || doc.link || doc.pdfLink || doc.semanticLink || (doc.doi ? `https://doi.org/${doc.doi}` : null),
     source: doc.journalName || doc.v_journal_name || doc.publicationType || 'Academic Source',
     publishedDate: doc.publishedAt || doc.year?.toString() || '',
     citations: doc.impactFactor?.citationCount || doc.citationCount || 0,
