@@ -1,7 +1,7 @@
 export interface Source {
   index: number;
   title: string;
-  url: string;
+  url: string | null;
   source: string;
   publishedDate: string;
 }
