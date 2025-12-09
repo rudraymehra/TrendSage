@@ -22,8 +22,8 @@ function HomeContent() {
     if (queryParam && !initialQueryHandled.current) {
       initialQueryHandled.current = true;
       setTimeout(() => {
-        search(queryParam);
-        setHasSearched(true);
+      search(queryParam);
+      setHasSearched(true);
       }, 0);
     }
   }, [searchParams, search]);
@@ -90,12 +90,12 @@ function HomeContent() {
 
             {/* Search Bar */}
             <div className="animate-fade-in-up relative z-20" style={{ animationDelay: '0.4s' }} suppressHydrationWarning>
-              <SearchBar
-                onSearch={handleSearch}
-                suggestions={suggestions}
-                onInputChange={fetchSuggestions}
-                isLoading={isLoading}
-              />
+            <SearchBar
+              onSearch={handleSearch}
+              suggestions={suggestions}
+              onInputChange={fetchSuggestions}
+              isLoading={isLoading}
+            />
             </div>
 
             {/* Stats row */}
@@ -174,8 +174,8 @@ function HomeContent() {
               <div className="card-glass p-8 text-center animate-fade-in">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center">
                   <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                  </svg>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">Something went wrong</h3>
                 <p className="text-zinc-400 mb-6">{error}</p>
@@ -193,8 +193,8 @@ function HomeContent() {
               <div className="card-glass p-12 text-center animate-fade-in">
                 <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-zinc-800 flex items-center justify-center">
                   <svg className="w-10 h-10 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">No results found</h3>
                 <p className="text-zinc-400">Try adjusting your search query or explore our trending topics.</p>
@@ -250,7 +250,7 @@ function HomeContent() {
               </div>
 
               {/* Step 2 */}
-              <div className="card-glass p-8 text-center group hover:scale-105 transition-transform duration-300">
+              <div className="card-glass p-8 text-center group hover:scale-105 transition-transform duration-300 relative">
                 <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 border border-purple-500/30 flex items-center justify-center group-hover:glow-border transition-all">
                   <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -258,7 +258,21 @@ function HomeContent() {
                 </div>
                 <div className="text-sm text-purple-400 font-medium mb-2">Step 02</div>
                 <h3 className="text-xl font-semibold text-white mb-3">Aggregate Sources</h3>
-                <p className="text-zinc-400">We fetch relevant papers, reports, and publications from top databases</p>
+                <p className="text-zinc-400 mb-4">We fetch relevant papers, reports, and publications from top databases</p>
+                
+                {/* Powered by Veritus badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                  <svg width="16" height="16" viewBox="0 0 120 100" fill="none">
+                    <g fill="#8b5cf6">
+                      <polygon points="10,30 35,30 50,45 25,45"/>
+                      <polygon points="85,30 110,30 95,45 70,45"/>
+                      <polygon points="25,45 50,45 60,95 35,95"/>
+                      <polygon points="70,45 95,45 85,95 60,95"/>
+                      <polygon points="50,45 70,45 60,75"/>
+                    </g>
+                  </svg>
+                  <span className="text-xs text-zinc-400">via Veritus AI</span>
+                </div>
               </div>
 
               {/* Step 3 */}
@@ -280,16 +294,43 @@ function HomeContent() {
       {/* Footer */}
       {!hasSearched && !isLoading && (
         <footer className="relative py-12 px-4 border-t border-zinc-800/50">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">TS</span>
-              </div>
-              <span className="text-white font-semibold">TrendSage</span>
+          <div className="max-w-6xl mx-auto">
+            {/* Powered by Veritus */}
+            <div className="flex justify-center mb-10">
+              <a
+                href="https://veritus.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-4 px-8 py-4 rounded-2xl bg-gradient-to-r from-slate-50 to-white border border-slate-200 hover:border-slate-300 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/5 hover:-translate-y-0.5"
+              >
+                <span className="text-slate-500 text-sm font-medium">Research powered by</span>
+                <div className="flex items-center gap-2.5">
+                  {/* Veritus Logo SVG */}
+                  <svg width="28" height="28" viewBox="0 0 120 100" fill="none" className="group-hover:scale-110 transition-transform duration-300">
+                    <g fill="#1a1f5c">
+                      <polygon points="10,30 35,30 50,45 25,45"/>
+                      <polygon points="85,30 110,30 95,45 70,45"/>
+                      <polygon points="25,45 50,45 60,95 35,95"/>
+                      <polygon points="70,45 95,45 85,95 60,95"/>
+                      <polygon points="50,45 70,45 60,75"/>
+                    </g>
+                  </svg>
+                  <span className="text-[#1a1f5c] font-bold text-xl tracking-widest" style={{ fontFamily: 'Georgia, serif' }}>VERITUS</span>
+                </div>
+              </a>
             </div>
-            <p className="text-zinc-500 text-sm">
-              © 2025 TrendSage. Powered by AI & Scholarly Research.
-            </p>
+            
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">TS</span>
+                </div>
+                <span className="text-white font-semibold">TrendSage</span>
+              </div>
+              <p className="text-zinc-500 text-sm">
+                © 2025 TrendSage. AI-Powered Market Intelligence.
+              </p>
+            </div>
           </div>
         </footer>
       )}

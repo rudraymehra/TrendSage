@@ -292,3 +292,4 @@ const generateMockSubTopics = (query: string): SubTopicsResult => {
 
 export default { generateTrendSummary, generateSubTopics };
 
+

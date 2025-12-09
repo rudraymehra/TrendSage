@@ -1,0 +1,16 @@
+<svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Veritus Logo - Geometric V -->
+  <g fill="#1a1f5c">
+    <!-- Top left parallelogram -->
+    <polygon points="10,30 35,30 50,45 25,45"/>
+    <!-- Top right parallelogram -->
+    <polygon points="85,30 110,30 95,45 70,45"/>
+    <!-- Left diagonal -->
+    <polygon points="25,45 50,45 60,95 35,95"/>
+    <!-- Right diagonal -->
+    <polygon points="70,45 95,45 85,95 60,95"/>
+    <!-- Center V -->
+    <polygon points="50,45 70,45 60,75"/>
+  </g>
+</svg>
+
